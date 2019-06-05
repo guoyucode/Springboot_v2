@@ -1,5 +1,6 @@
-package com.fc;
+package com.gaozhi;
 
+import com.gaozhi.SpringbootStart;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 

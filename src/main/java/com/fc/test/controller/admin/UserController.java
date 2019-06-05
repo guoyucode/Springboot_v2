@@ -1,18 +1,5 @@
 package com.fc.test.controller.admin;
 
-import java.util.List;
-
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.fc.test.common.base.BaseController;
 import com.fc.test.common.domain.AjaxResult;
 import com.fc.test.common.log.Log;
@@ -23,37 +10,42 @@ import com.fc.test.model.custom.TableSplitResult;
 import com.fc.test.model.custom.Tablepar;
 import com.fc.test.model.custom.TitleVo;
 import com.github.pagehelper.PageInfo;
-
 import io.swagger.annotations.Api;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("UserController")
 @Api(value = "用户数据")
 public class UserController extends BaseController{
-	
+
 	private String prefix = "admin/user";
-	
-	
+
 	@GetMapping("view")
 	@RequiresPermissions("system:user:view")
     public String view(Model model)
-    {	
-		
+    {
 		setTitle(model, new TitleVo("用户列表", "用户管理", true,"欢迎进入用户页面", true, false));
         return prefix + "/list";
     }
-	
-	
+
+
 	@Log(title = "用户集合查询", action = "111")
 	@PostMapping("list")
 	@RequiresPermissions("system:user:list")
 	@ResponseBody
 	public Object list(Tablepar tablepar,String username){
-		PageInfo<TsysUser> page=sysUserService.list(tablepar,username) ; 
-		TableSplitResult<TsysUser> result=new TableSplitResult<TsysUser>(page.getPageNum(), page.getTotal(), page.getList()); 
+
+		PageInfo<TsysUser> page=sysUserService.list(tablepar,username) ;
+		TableSplitResult<TsysUser> result=new TableSplitResult<TsysUser>(page.getPageNum(), page.getTotal(), page.getList());
 		return  result;
 	}
-	
+
 	/**
      * 新增用户
      */
@@ -65,8 +57,8 @@ public class UserController extends BaseController{
 		modelMap.put("tsysRoleList",tsysRoleList);
         return prefix + "/add";
     }
-	
-	
+
+
 	@PostMapping("add")
 	@RequiresPermissions("system:user:add")
 	@ResponseBody
@@ -78,7 +70,7 @@ public class UserController extends BaseController{
 			return error();
 		}
 	}
-	
+
 	/**
 	 * 删除用户
 	 * @param ids
@@ -95,7 +87,7 @@ public class UserController extends BaseController{
 			return error();
 		}
 	}
-	
+
 	/**
 	 * 检查用户
 	 * @param tsysUser
@@ -111,8 +103,8 @@ public class UserController extends BaseController{
 			return 0;
 		}
 	}
-	
-	
+
+
 	/**
 	 * 修改用户
 	 * @param id
@@ -129,7 +121,7 @@ public class UserController extends BaseController{
 
         return prefix + "/edit";
     }
-	
+
 	/**
      * 修改保存用户
      */
@@ -141,8 +133,8 @@ public class UserController extends BaseController{
         return toAjax(sysUserService.updateUserRoles(tsysUser,roles));
     }
 
-    
-    
+
+
     /**
 	 * 修改用户密码
 	 * @param id
@@ -166,5 +158,5 @@ public class UserController extends BaseController{
         return toAjax(sysUserService.updateUserPassword(tsysUser));
     }
 
-	
+
 }

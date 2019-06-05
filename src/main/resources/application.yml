@@ -12,7 +12,7 @@ fuce:
 server :
   port : 8080
   ##项目名字配置
-  #servlet : 
+  #servlet :
   #  context-path : /demo
   tomcat :
     max-threads : 128
@@ -38,15 +38,20 @@ spring :
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
-mybatis :
-  mapperLocations : classpath*:mybatis/*/*.xml
-  executor-type : reuse
-  type-aliases-package : com.*.model
-  configuration :
-    map-underscore-to-camel-case : true
+  jpa:
+    show-sql: true
 #pagehelper分页插件
 pagehelper:
     helperDialect: mysql
     reasonable: true
     supportMethodsArguments: true
     params: count=countSql
+
+mybatis-plus:
+  check-config-location: true
+  mapperLocations : classpath*:mybatis/*/*.xml,classpath*:com/gaozhi/mapper/xml/*.xml
+  executor-type : reuse
+  type-aliases-package : com.*.model
+  configuration :
+    map-underscore-to-camel-case : true
+    jdbc-type-for-null: 'null'

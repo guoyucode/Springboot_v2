@@ -1,4 +1,4 @@
-package com.fc;
+package com.gaozhi;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  */
 @SpringBootApplication
-@MapperScan(value = "com.fc.test.mapper")
+@MapperScan(value = {"com.fc.test.mapper","com.gaozhi.mapper"})
 public class SpringbootStart {
 
     public static void main(String[] args) {

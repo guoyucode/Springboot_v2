@@ -1,8 +1,9 @@
 package com.fc.test.common.base;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
+import com.fc.test.common.domain.AjaxResult;
+import com.fc.test.model.custom.TitleVo;
+import com.fc.test.service.*;
+import com.fc.test.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -10,16 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 
-import com.fc.test.common.domain.AjaxResult;
-import com.fc.test.model.custom.TitleVo;
-import com.fc.test.service.SysDatasService;
-import com.fc.test.service.SysFileDatasService;
-import com.fc.test.service.SysFileService;
-import com.fc.test.service.SysOperLogService;
-import com.fc.test.service.SysPremissionService;
-import com.fc.test.service.SysRoleService;
-import com.fc.test.service.SysUserService;
-import com.fc.test.util.StringUtils;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * web层通用数据处理
@@ -33,32 +26,32 @@ public class BaseController
 {
 	//系统用户
 	@Autowired
-	public SysUserService sysUserService; 
-	
+	public SysUserService sysUserService;
+
 	//系统角色
 	@Autowired
-	public SysRoleService sysRoleService; 
-	
+	public SysRoleService sysRoleService;
+
 	//权限
 	@Autowired
 	public SysPremissionService sysPremissionService;
-	
+
 	//文件上传
 	@Autowired
 	public SysFileService sysFileService;
-	
+
 	//文件存储
 	@Autowired
 	public SysDatasService sysDatasService;
-	
+
 	//文件存储管理表
 	@Autowired
 	public SysFileDatasService sysFileDatasService;
-	
+
 	//日志操作
 	@Autowired
 	public SysOperLogService sysOperLogService;
-	
+
     /**
      * 将前台传递过来的日期格式的字符串，自动转化为Date类型
      */
@@ -70,13 +63,13 @@ public class BaseController
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 
-   
+
 
 
 
     /**
      * 响应返回结果
-     * 
+     *
      * @param rows 影响行数
      * @return 操作结果
      */
@@ -108,7 +101,7 @@ public class BaseController
     {
         return AjaxResult.success(message);
     }
-    
+
 
     /**
      * 返回失败消息
@@ -125,7 +118,7 @@ public class BaseController
     {
         return AjaxResult.error(code, message);
     }
-    
+
     /**
      * 返回object数据
      */
@@ -141,8 +134,8 @@ public class BaseController
     {
         return StringUtils.format("redirect:{}", url);
     }
-    
-    
+
+
     /**
      * 设置标题通用方法
      * @param model
@@ -160,5 +153,5 @@ public class BaseController
 		model.addAttribute("isribbon", titleVo.isIsribbon());
     }
 
-   
+
 }
