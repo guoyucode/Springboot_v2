@@ -13,3 +13,4 @@
 *.iws
 *.lic
 rebel.xml
+src/main/resources/application-test.yml

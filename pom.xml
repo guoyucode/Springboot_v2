@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.0.RELEASE</version>
+		<version>2.1.5.RELEASE</version>
 		<relativePath /> <!-- 从存储库查找父级 -->
 	</parent>
 
@@ -69,20 +69,20 @@
 			<artifactId>pagehelper</artifactId>
 			<version>4.1.4</version>
 		</dependency>
-		<!-- mysql驱动7.0-->
+		<!-- mysql驱动7.0
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.40</version><!--$NO-MVN-MAN-VER$-->
-		</dependency> 
-
-		<!-- mysql驱动8.0
-		 <dependency> 
-		 	<groupId>mysql</groupId> 
-		 	<artifactId>mysql-connector-java</artifactId> 
-			<version>8.0.11</version>
+			<version>5.1.40</version>&lt;!&ndash;$NO-MVN-MAN-VER$&ndash;&gt;
+		</dependency>
+-->
+		<!-- mysql驱动8.0-->
+		 <dependency>
+		 	<groupId>mysql</groupId>
+		 	<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.16</version>
 		 </dependency>
-		 -->
+
 		<!--druid 数据源监控-->
 		<!-- https://mvnrepository.com/artifact/com.alibaba/druid-spring-boot-starter -->
 		<dependency>
@@ -207,13 +207,13 @@
 					<!--配置文件的路径 -->
 					<configurationFile>src/main/resources/mybatis-generator.xml</configurationFile>
 				</configuration>
-				<dependencies>
+				<!--<dependencies>
 					<dependency>
 						<groupId>mysql</groupId>
 						<artifactId>mysql-connector-java</artifactId>
 						<version>${mysql.version}</version>
 					</dependency>
-				</dependencies>
+				</dependencies>-->
 			</plugin>
 			<!-- jar运行配置 -->
 			<plugin>
@@ -248,6 +248,6 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-	
-	
+
+
 </project>
